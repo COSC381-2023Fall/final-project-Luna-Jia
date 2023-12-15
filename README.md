@@ -19,11 +19,17 @@
 5. To install the dependencies in batch(set up a virtual environement), run the command:
 	`python3 -m pip install -r requirements.txt`
 
-6. To run the application, use the following command:
+6. To run the fast API application, use the following command:
 `uvicorn main:app --reload`
 
 7. In the browser, go to `http://127.0.0.1:8000`, the webpage will return a JSON response:
  `{"Hello": "world"}`
 
- 8. Run test 
-	Open terminal, run `pytest --cov=.`
+8. Run test, in termial, type `pytest --cov=.`
+
+9. # run `youtube.py` to see 10 reviews for movie "Inception", in terminal, type:
+`python youtube.py "Inception"`
+
+10. To run the fast API application, and search for 10 reviews/comments for a movie, in the web browser, type:
+`http://127.0.0.1:8000/moviereviews/<movie name>`. For example, to search reviews for movie Inception, type: 
+`http://127.0.0.1:8000/moviereviews/Inception`
