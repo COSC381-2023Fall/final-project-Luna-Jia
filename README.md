@@ -1,12 +1,29 @@
-## Overview
+# FastAPI Project Guide
 
-This final project test your skills in Git, GitHub, Python, virtual environment, Web APIs, FastAPIs, and testing.
+###### This project is built using FastAPI, a modern, fast web framework for building APIs with Python.
 
-### Final Project
+#### Follow the following steps to run the project:
 
-The final project is to create a FastAPI app that finds movie review videos. In total, the app has four API methods.
+1. download the project to your machine
+`git clone git@github.com:COSC381-2023Fall/final-project-Luna-Jia.git`
 
-/	                                      "Hello World"
-/moviereviews/{movie_name}	              Retrieve 10 movie review videos (Issue 2)
-/moviereviews/{language}/{movie_name}	  Retrieve 10 movie review videos in a specific language (Issue 4)
-/descriptions/{video_id}	              Retrieve a complete description of a video (Issue 3)
+2. at the project directory, create vertual enviroment
+`python3 -m venv .venv`
+
+3. run vertual enviroment
+`source .venv/bin/activate`
+
+4. make sure pip is pointing to the right path
+`which pip`
+
+5. To install the dependencies in batch(set up a virtual environement), run the command:
+	`python3 -m pip install -r requirements.txt`
+
+6. To run the application, use the following command:
+`uvicorn main:app --reload`
+
+7. In the browser, go to `http://127.0.0.1:8000`, the webpage will return a JSON response:
+ `{"Hello": "world"}`
+
+ 8. Run test 
+	Open terminal, run `pytest --cov=.`
