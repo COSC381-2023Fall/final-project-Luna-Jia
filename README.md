@@ -1,29 +1,30 @@
-# FastAPI Project Guide
+# list hidden 文件
+ls -a
 
-###### This project is built using FastAPI, a modern, fast web framework for building APIs with Python.
+# start virtual environment 
+source .venv/bin/activate
 
-#### Follow the following steps to run the project:
+# 切换 git branch
+git fetch origin
+git checkout luna/2-feature-find-movie-commentaryreviews-through-youtube-api
 
-1. download the project to your machine
-`git clone git@github.com:COSC381-2023Fall/final-project-Luna-Jia.git`
+# show content of a file 
+cat requirements.txt
 
-2. at the project directory, create vertual enviroment
-`python3 -m venv .venv`
+# To get the dependencies in a virtual environment, run the command: 
+python3 -m pip freeze > requirements.txt
 
-3. run vertual enviroment
-`source .venv/bin/activate`
+# install google API
+pip install google-api-python-client
 
-4. make sure pip is pointing to the right path
-`which pip`
+#run test
+pytest --cov=.
 
-5. To install the dependencies in batch(set up a virtual environement), run the command:
-	`python3 -m pip install -r requirements.txt`
+# check which lines are not covered by the test
+pytest --cov=. --cov-report term-missing
 
-6. To run the application, use the following command:
-`uvicorn main:app --reload`
+# run youtube API to see 10 reviews for movie "Inception"
+python youtube.py "Inception"
 
-7. In the browser, go to `http://127.0.0.1:8000`, the webpage will return a JSON response:
- `{"Hello": "world"}`
-
- 8. Run test 
-	Open terminal, run `pytest --cov=.`
+# run fast API app
+uvicorn main:app --reload
