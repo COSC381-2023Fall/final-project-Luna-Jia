@@ -27,7 +27,7 @@
 
 8. Run test, in termial, type `pytest --cov=.`
 
-9. # run `youtube.py` to see 10 reviews for movie "Inception", in terminal, type:
+9. run `youtube.py` to see 10 reviews for movie "Inception", in terminal, type:
 `python youtube.py "Inception"`
 
 10. To run the fast API application, and search for 10 reviews/comments for a movie, in the web browser, type:`http://127.0.0.1:8000/moviereviews/<movie name>`. For example, to search reviews for movie Inception, go to: 
