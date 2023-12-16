@@ -8,16 +8,15 @@ DEVELOPER_KEY = config.API_KEY
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
-# defined a function "youtube_search_reviews" that only requires the query_term parameter; 
-def youtube_search_reviews(query_term, max_results=10): # set a default max_results to 10.
+def youtube_search_reviews(query_term, max_results=10):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
     search_response = youtube.search().list(
-        q=f"{query_term} review|commentary", #search query includes "review" or "commentary" by using the pipe | which acts as a logical OR in the YouTube search query.
+        q=f"{query_term} review|commentary",
         part='id,snippet',
         maxResults=max_results,
         type='video',
-        order='relevance',  
+        order='relevance'
     ).execute()
 
     videos = []
@@ -31,15 +30,27 @@ def youtube_search_reviews(query_term, max_results=10): # set a default max_resu
 
     return videos
 
+def get_video_description(video_id):
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+
+    video_response = youtube.videos().list(
+        id=video_id,
+        part='snippet',
+        maxResults=1
+    ).execute()
+
+    video_description = video_response.get('items', [{}])[0].get('snippet', {}).get('description', '')
+    return video_description
+
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("Usage: python youtube.py 'QUERY_TERM'")
-        sys.exit(1)
+    if len(sys.argv) == 3 and sys.argv[1] == '--description':
+        video_id = sys.argv[2]
+        print(get_video_description(video_id))
 
-    query_term = sys.argv[1]
-
-    review_videos = youtube_search_reviews(query_term)
-    for video in review_videos:
-        print(f"Video ID: {video['videoId']}")
-        print(f"Title: {video['title']}")
-        print(f"Description: {video['description']}\n")
+    else:
+        query_term = sys.argv[1]
+        review_videos = youtube_search_reviews(query_term)
+        for video in review_videos:
+            print(f"Video ID: {video['videoId']}")
+            print(f"Title: {video['title']}")
+            print(f"Description: {video['description']}\n")
