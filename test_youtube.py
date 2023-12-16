@@ -4,7 +4,28 @@ from googleapiclient.errors import HttpError
 import subprocess
 import youtube
 
-from youtube import youtube_search_reviews
+from youtube import youtube_search_reviews, get_video_description, translate_text
+
+# Mock response for the Google Translate API
+MOCK_TRANSLATE_RESPONSE = {
+    "translations": [
+        {
+            "translatedText": "Iniciación"
+        }
+    ]
+}
+
+@patch('youtube.build')
+def test_translate_text(mock_build):
+    # Setup mock service to return the mocked translate response
+    mock_service = Mock()
+    mock_build.return_value = mock_service
+    mock_service.translations().list().execute.return_value = MOCK_TRANSLATE_RESPONSE
+
+    translated_text = translate_text("Inception", "es")
+    assert translated_text == "Iniciación"
+    mock_service.translations().list.assert_any_call(source='en', target='es', q=['Inception'])
+
 
 # Sample data to mock YouTube API response
 SAMPLE_API_RESPONSE = {
@@ -56,13 +77,6 @@ def test_get_video_description(mock_build):
     assert mock_build.called
     assert video_description == "By request, another classic review from my previous channel, this time, it's Christopher Nolan's Inception."
     mock_service.videos().list.assert_any_call(id="RNjdepthRrg", part='snippet', maxResults=1)
-
-# test_script_valid_input remains the same
-
-
-# def test_script_no_args():
-#     result = subprocess.run(['python', 'youtube.py'], capture_output=True, text=True)
-#     assert 'Usage: python youtube.py' in result.stdout or 'Usage: python youtube.py' in result.stderr
 
 def test_script_valid_input():
     result = subprocess.run(['python', 'youtube.py', 'Inception'], capture_output=True, text=True)
