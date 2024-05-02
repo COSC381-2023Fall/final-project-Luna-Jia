@@ -1,7 +1,9 @@
-# YouTube Review and Description Fetcher<img width="648" alt="截屏2024-05-02 上午10 15 23" src="https://github.com/COSC381-2023Fall/final-project-Luna-Jia/assets/73403516/2d142239-dd4e-4a9e-90ef-606d29a7bef2">
-
+# YouTube Review and Description Fetcher
 
 ###### This project is a Python-based application for fetching YouTube video reviews and descriptions, built with FastAPI, a modern, fast web framework for building APIs with Python.
+
+<img width="648" alt="截屏2024-05-02 上午10 15 23" src="https://github.com/COSC381-2023Fall/final-project-Luna-Jia/assets/73403516/2d142239-dd4e-4a9e-90ef-606d29a7bef2">
+
 #### Key Features:
 - Integrated Google Cloud Translate API for multilingual support.
 - Implemented CLI functionality for review fetching using video IDs or search terms.
