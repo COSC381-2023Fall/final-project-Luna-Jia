@@ -1,6 +1,12 @@
-# FastAPI Project Guide
+# YouTube Review and Description Fetcher
 
-###### This project is built using FastAPI, a modern, fast web framework for building APIs with Python.
+###### This project is a Python-based application for fetching YouTube video reviews and descriptions, built with FastAPI, a modern, fast web framework for building APIs with Python.
+#### Key Features:
+- Integrated Google Cloud Translate API for multilingual support.
+- Implemented CLI functionality for review fetching using video IDs or search terms.
+- Utilized GitHub Actions for CI, ensuring code quality through automated testing.
+
+
 
 #### Follow the following steps to run the project:
 
